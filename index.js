@@ -11,7 +11,7 @@ passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientID,
         clientSecret: keys.goolgeClientSecret,
-        callbackURL: '/auth/google/callback'
+        callbackURL: 'https://absorbing-toothpaste-production.up.railway.app/auth/google/callback'
     }, (accessToken) => {
         console.log(accessToken);
     })
