@@ -21,20 +21,19 @@ passport.use(
         {
             clientID: keys.googleClientID,
             clientSecret: keys.goolgeClientSecret,
-            callbackURL: 'https://absorbing-toothpaste-production.up.railway.app/auth/google/callback'
+            //callbackURL: 'https://absorbing-toothpaste-production.up.railway.app/auth/google/callback',
+            //scope: ['profile', 'email'],
+            callbackURL: 'https://localhost:5000/auth/google/callback'
+            //callbackURL: '/auth/google/callback',
+            //proxy: true
         },
-        (accessToken, refreshToken, profile, done) => {
-            User.findOne({ googleId: profile.id }).then(existingUser => {
-                if (existingUser) {
-                    // We already have a record with the given profile ID
-                    done(null, existingUser);
-                } else {
-                    // We don't have a user record with this profile ID, create a new record.
-                    new User({ googleId: profile.id})
-                        .save()
-                        .then(user => done(null, user));
-                }
-            });
+        async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({ googleId: profile.id })
+            if (existingUser) {
+                return done(null, existingUser);
+            }
+            const user = await new User({ googleId: profile.id}).save()
+            done(null, user);
         }
     )
 );
