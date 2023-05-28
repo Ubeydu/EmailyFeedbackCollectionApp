@@ -23,8 +23,8 @@ passport.use(
             clientSecret: keys.goolgeClientSecret,
             //callbackURL: 'https://absorbing-toothpaste-production.up.railway.app/auth/google/callback',
             //scope: ['profile', 'email'],
-            callbackURL: 'https://localhost:5000/auth/google/callback'
-            //callbackURL: '/auth/google/callback',
+            //callbackURL: 'http://localhost:5000/auth/google/callback',
+            callbackURL: '/auth/google/callback',
             //proxy: true
         },
         async (accessToken, refreshToken, profile, done) => {
