@@ -9,7 +9,7 @@ class Header extends Component {
             case null:
                 return;
             case false:
-                return <li><a href='/auth/google'>Login With Google</a></li>
+                return <li><a href='/auth/google'>Login With Google</a></li>;
             default:
                 return [
                     <li key="1"><Payments /></li>,
@@ -24,10 +24,10 @@ class Header extends Component {
     render() {
         return (
             <nav>
-                <div className='nav-wrapper'>
+                <div className="nav-wrapper">
                     <Link
                         to={this.props.auth ? '/surveys' : '/'}
-                        className='left brand-logo'
+                        className="left brand-logo"
                     >
                         Emaily
                     </Link>
